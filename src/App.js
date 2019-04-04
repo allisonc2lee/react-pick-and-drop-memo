@@ -17,6 +17,7 @@ class App extends Component {
           <Route path="/" component={Homepage} exact/>
           <Route path="/addNewMemo" component={SubmitMemo} />
           <Route path="/user" component={User} />
+          <Route render={() => <p>Page not found</p>} />
         </Switch>
       </div>
     );
