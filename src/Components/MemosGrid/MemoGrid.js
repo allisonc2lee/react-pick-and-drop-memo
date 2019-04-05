@@ -1,20 +1,15 @@
-import React, {useEffect} from 'react';
-import { Route, Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
 import Memo from '../Memo/Memo'
 
 const MemoGrid = (props) => {
 
-    useEffect(() => {
-        console.log(props.test)
-    })
-
-    const memoList = props.memos.map(memo => {
+    const memoList = props.notes.map(memo => {
         return(
-            <Link to="/id1" key={memo.id}>
-                <li>
-                    {memo.title}
-                </li>
-            </Link>
+            <Memo 
+                key={memo.id}
+                name={memo.name}
+                message={memo.message}
+            />
         )
     })
 
@@ -23,8 +18,8 @@ const MemoGrid = (props) => {
             <h2>MemoGrid Component</h2>
             <ul>
                 { memoList }
-            </ul>
-            {/* <Route path={props.match.url + '/' + props.id } component={Memo}/>  */}
+            </ul> 
+            
         </>
     )
 }

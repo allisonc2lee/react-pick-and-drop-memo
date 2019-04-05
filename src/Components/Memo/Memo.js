@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Memo = () => {
+const Memo = (props) => {
+
+    const [clickedReply, setClickedReply] = useState(false)
+    const [hoverMemo, setHoverMemo] = useState(false)
+
     return(
         <>
-            <h2>Single Memo Component</h2>
-            <p>This the message of the memo</p>
+            <div className="memo" onMouseOver={() => setHoverMemo(true)} onMouseLeave={() => setHoverMemo(false)}>
+                <h3>{props.name}</h3>
+                <p>{props.message}</p>
+                { hoverMemo ? <button onClick={() => {setClickedReply(true)}}>Reply</button> : null}
+                { clickedReply ? 
+                    <form>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <button type="submit">Send</button>
+                    </form> 
+                : null }
+                </div>
         </>
     )
 }

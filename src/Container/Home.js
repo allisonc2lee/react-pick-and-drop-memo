@@ -1,46 +1,52 @@
 import React, { useState, useEffect }  from 'react'
-import { Route, Link } from 'react-router-dom'
+// import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { ClipLoader } from 'react-spinners';
 
 import MemoGrid from '../Components/MemosGrid/MemoGrid'
-import Header from '../Components/Header/Header'
+// import Header from '../Components/Header/Header'
 
 const Homepage = (props) => {
 
-    const [memos, setMemos] = useState([]);
+    const [memos, setMemos] = useState([
+        {id:1, name:'Memo 1', message: 'This is the memo 1'},
+        {id:2, name:'Memo 2', message: 'This is the memo 2'},
+        {id:3, name:'Memo 2', message: 'This is the memo 3'}
+    ]);
     const [loading, setLoading] = useState(true);
     const [fetchData, setFetchData] = useState(false);
 
     const memoStorageUrl = '/db'
 
     useEffect(() => {
-        console.log(props)
-        axios.get(memoStorageUrl)
-        .then(response => {
-            //console.log(response.data.posts)
-            setLoading(false)
-            setMemos(response.data.posts)
-        })
-        .catch(error =>
-            setFetchData(true)
-        )
+        
+
+        // console.log(props)
+        // axios.get(memoStorageUrl)
+        // .then(response => {
+        //     //console.log(response.data.posts)
+        //     setLoading(false)
+        //     setMemos(response.data.posts)
+        // })
+        // .catch(error =>
+        //     setFetchData(true)
+        // )
     },[]) 
 
 
     return (
         <>  
-            { loading ? <div className='sweet-loading'>
+            {/* { loading ? <div className='sweet-loading'>
                 <ClipLoader
                 sizeUnit={"px"}
                 size={150}
                 color={'#123abc'}
                 />
                 </div>  
-            : null }
+            : <MemoGrid notes={memos} url={props.match.path}/> } */}
+            <MemoGrid notes={memos} url={props.match.path}/>
             { fetchData ? <p>Failed to get the memo :o </p> : null }
-            <MemoGrid memos={memos}/>
         </>
     )
 }

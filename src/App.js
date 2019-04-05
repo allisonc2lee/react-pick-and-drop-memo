@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
-import './App.css';
-
 import Homepage from './Container/Home'
 import SubmitMemo from './Components/SubmitMemo/SubmitMemo'
 import User from './Components/User/User'
-import Header from './Components/Header/Header';
+import Memo from './Components/Memo/Memo'
+import Header from './Components/Header/Header'
+import Login from './Components/Login/Login'
 
 class App extends Component {
   render() {
@@ -15,8 +15,10 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/" component={Homepage} exact/>
+          <Route path="/login" component={Login} />
           <Route path="/addNewMemo" component={SubmitMemo} />
           <Route path="/user" component={User} />
+          <Route path="memo/:id" component={Memo} />
           <Route render={() => <p>Page not found</p>} />
         </Switch>
       </div>
