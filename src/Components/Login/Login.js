@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
+import firebase from "firebase"
+import app from '../../base'
+import LoginMethod from './LoginMethod'
 
-const Login = (props) => {
-    return (
-        <nav>
-            <h2>Please Login</h2>
-            <p>Sign in to Pick and Drop a memoy</p>
-            <button className="github" onClick={() => props.authenticate("Github")}>
-                Log In With GitHub
-            </button>
-            <button className="twitter" onClick={() => props.authenticate("Twitter")}>
-                Log In With Twitter
-            </button>
-        </nav>
-    )
+class User extends Component{
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            
+        })
+    }
+
+    authHandler = async(authData) => {
+        console.log(authData)
+    }
+
+    authenticate = (provider) => {
+        const authProvider = new firebase.auth[`${provider}AuthProvider`]()
+        app.auth().signInWithPopup(authProvider)
+            .then(this.authHandler)
+    }
+    
+    render() {
+        return(
+            <>  
+                <LoginMethod authenticate={this.authenticate}/>
+            </>
+        )
+    }
 }
 
-export default Login
+export default User
