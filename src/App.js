@@ -14,11 +14,11 @@ class App extends Component {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/" component={Homepage} exact/>
-          <Route path="/login" component={Login} />
+          <Route path="memo/:id" component={Memo} />
           <Route path="/addNewMemo" component={SubmitMemo} />
           <Route path="/user" component={User} />
-          <Route path="memo/:id" component={Memo} />
+          <Route path="/login" component={Login} />
+          <Route path="/" component={Homepage} />
           <Route render={() => <p>Page not found</p>} />
         </Switch>
       </div>

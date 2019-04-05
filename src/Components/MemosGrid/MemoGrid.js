@@ -8,7 +8,7 @@ const MemoGrid = (props) => {
             <Memo 
                 key={memo.id}
                 name={memo.name}
-                message={memo.message}
+                message={memo.title}
             />
         )
     })
