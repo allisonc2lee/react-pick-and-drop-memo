@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import UserProfileIcon from '../UserProfileIcon/UserProfileIcon'
 
-const Header = () => {
+const Header = props => {
+
+    const [auth, setAuth] = useState(false)
+
+    const [authNav, setAuthNav] = useState([
+        {link: "/addNewMemo", content: 'Add New'},
+        {link: "/user", content: 'Profile'}
+    ])
+
+    const afterLogin = authNav.map(auth => <Link to={auth.link}>{auth.content}</Link>)
+
     return(
         <>
             <nav>
@@ -10,12 +20,10 @@ const Header = () => {
                     <Link to="/">
                         <h1>Pick and Drop</h1>
                     </Link>
-                    <Link to="/addNewMemo">Add New</Link>
-                    <Link to="/user">User</Link>
+                    { !auth ? afterLogin : <Link to="/login">Login</Link> }
+                    
                 </ul>
-                <Link to="/login">
-                    <UserProfileIcon />
-                </Link>
+
             </nav>
         </>
     )

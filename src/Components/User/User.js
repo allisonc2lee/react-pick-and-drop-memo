@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import firebase from "firebase"
 import app from '../../base'
 import MemoGrid from '../MemosGrid/MemoGrid'
-import Login from '../Login/Login'
+import UserProfile from '../UserProfile/UserProfile'
 
 class User extends Component{
     state = {
-        myMemo: []
+        myMemo: [
+            {id: 11, name: 'User Bobby', message: "Memo on the User page 1"},
+            {id: 12, name: 'User Bobby', message: "Memo on the User page 2"},
+            {id: 13, name: 'User Bobby', message: "Memo on the User page 3"},
+        ]
     }
 
     authHandler = async(authData) => {
@@ -22,17 +26,8 @@ class User extends Component{
     render() {
         return(
             <>  
-                {this.props.didUserLogin ? 
-                    <div className="">
-                        <h2>My Account</h2>
-                        <div>User Icon</div>
-                        <MemoGrid notes={this.state.myMemos} url={this.props.match.path}/>
-                    </div>
-                :
-                    <div>
-                        <Login authenticate={this.authenticate} />
-                    </div> 
-                }
+                <UserProfile />
+                <MemoGrid notes={this.state.myMemo} url={this.props.match.path}/>
             </>
         )
     }

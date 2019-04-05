@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ProfileIcon = (props) => {
+const ProfileIcon = props => {
     return(
         <div>
             {props.userDatqa ? 
