@@ -36,6 +36,8 @@ class User extends Component{
                     userId: user.uid,
                     userName: displayName
                 })
+
+                this.loadMemoData()
             }
             console.log(user)
         })
