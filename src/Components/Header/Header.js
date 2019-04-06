@@ -38,9 +38,8 @@ const Header = props => {
                     <Link to="/">
                         <h1>Pick and Drop</h1>
                     </Link>
-                    {/* { auth ? afterLogin  : <Link to="/user">Login</Link> } */}
-                    { showLogOutButton }                </ul>
-
+                    { showLogOutButton }                
+                </ul>
             </nav>
         </>
     )

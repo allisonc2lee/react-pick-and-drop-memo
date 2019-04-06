@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import firebase, { auth } from "firebase"
+
 import app from '../../base'
 import Login from '../Login/Login'
 import MemoGrid from '../MemosGrid/MemoGrid'
@@ -40,17 +42,11 @@ class User extends Component{
         })
     }
 
-    authHandler = async(authData) => {     
-        // console.log(authData)
-    }
-
     authenticate = (provider) => {
         const authProvider = new firebase.auth[`${provider}AuthProvider`]()
         app.auth().signInWithPopup(authProvider)
             .then(this.authHandler)
     }
-    
-
 
 
     render() {
@@ -64,7 +60,7 @@ class User extends Component{
                         <MemoGrid notes={this.state.myMemo} url={this.props.match.path}/>
                     </div>
         } else {
-            logined = <Login authenticate={this.authenticate}/>
+            logined = null
         }
 
         return(

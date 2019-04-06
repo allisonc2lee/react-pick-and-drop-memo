@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import firebase from 'firebase'
 
 import Homepage from './Container/Home'
@@ -34,14 +34,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header SignOutUser={this.SignOutUser} login={this.state.login}/>
-        <Switch>
-          <Route path="memo/:id" component={Memo} />
-          <Route path="/addNewMemo" component={SubmitMemo} />
-          <Route path="/user" component={User} />
-          <Route path="/login" component={Login} />
-          <Route path="/" component={Homepage} />
-          <Route render={() => <p>Page not found</p>} />
-        </Switch>
+
+
+        {this.state.login ?         
+          <Switch>
+              <Route path="memo/:id" component={Memo} />
+              <Route path="/addNewMemo" component={SubmitMemo} />
+              <Route path="/user" component={User} />
+              <Route path="/login" component={Login} />
+              <Route path="/" component={Homepage} />
+              <Route render={() => <p>Page not found</p>} />
+            </Switch>
+         : 
+          <Route component={Login} />
+        }
       </div>
     );
   }
