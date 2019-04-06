@@ -7,7 +7,7 @@ import PleaseLogin from '../PleaseLogin'
 class SubmitMemo extends Component {
 
     state = {
-        title: 'test',
+        title: null,
         message: 'i m testing firebase',
         author: 'Meow',
         submitted: false
@@ -28,6 +28,7 @@ class SubmitMemo extends Component {
                 this.props.history.push('/memos')
             })
             .catch(error => console.log(error))
+
         this.setState({
             submitted: true
         })

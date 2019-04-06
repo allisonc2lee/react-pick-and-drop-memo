@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import UserProfileIcon from '../UserProfileIcon/UserProfileIcon'
+import firebase from 'firebase'
 
 const Header = props => {
 
@@ -10,6 +10,12 @@ const Header = props => {
         {link: "/addNewMemo", content: 'Add New'},
         {link: "/user", content: 'Profile'}
     ])
+
+    useState(() => {
+        firebase.auth().onAuthStateChanged(() => {
+            setAuth(true)
+        })
+    })
 
     const afterLogin = authNav.map(auth => <Link to={auth.link}>{auth.content}</Link>)
 
