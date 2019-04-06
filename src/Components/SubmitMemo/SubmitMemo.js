@@ -10,6 +10,7 @@ class SubmitMemo extends Component {
         title: '',
         message: '',
         author: '',
+        memoId: '',
         uid: '',
         submitted: false
     }
@@ -39,12 +40,13 @@ class SubmitMemo extends Component {
     memoDataHandler = (event) => {
         event.preventDefault()
         const memo = {
+            id: new Date().valueOf(),
             title: this.state.title,
             message: this.state.message,
             author: this.state.author
         }
         
-        axios.post(`${this.state.uid}/memos.json`, memo) 
+        axios.post(`/memos/${this.state.uid}/memo.json`, memo) 
             .then(res => {
                 console.log(res)
                 this.props.history.push('/memos')
