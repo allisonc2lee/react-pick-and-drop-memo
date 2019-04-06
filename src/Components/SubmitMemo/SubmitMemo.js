@@ -46,7 +46,7 @@ class SubmitMemo extends Component {
             author: this.state.author
         }
         
-        axios.post(`/memos/${this.state.uid}/memo.json`, memo) 
+        axios.post(`/memos/${this.state.uid}.json`, memo) 
             .then(res => {
                 console.log(res)
                 this.props.history.push('/memos')

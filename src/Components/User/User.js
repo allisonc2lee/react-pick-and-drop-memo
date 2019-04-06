@@ -16,7 +16,8 @@ class User extends Component{
         didAuth: false,
         userId: null,
         userName: "",
-        userIcon: null
+        userIcon: null,
+        testing: []
     }
 
     componentDidMount() {
@@ -41,7 +42,6 @@ class User extends Component{
             }
             console.log(user)
         })
-        this.loadMemoData()
     }
 
     authenticate = (provider) => {
@@ -51,9 +51,12 @@ class User extends Component{
     }
 
     loadMemoData() {
-        axios.get(`https://react-drop-and-pick.firebaseio.com/memos/${this.state.userId}/memo.json`)
+        axios.get(`https://react-drop-and-pick.firebaseio.com/memos/${this.state.userId}.json`)
             .then(res => {
-                console.log(res)
+                console.log(res.data)
+                this.setState({
+                    testing: res.data
+                })
             })
             .catch(error => console.log(error))
     }
