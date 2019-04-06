@@ -1,16 +1,33 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import firebase from 'firebase'
 import axios from '../../axios'
 import { Redirect } from 'react-router-dom'
-import PleaseLogin from '../PleaseLogin'
 
 class SubmitMemo extends Component {
 
     state = {
-        title: null,
-        message: 'i m testing firebase',
-        author: 'Meow',
+        title: '',
+        message: '',
+        author: '',
         submitted: false
+    }
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+
+            let displayName
+
+            if(!user.displayName) {
+                displayName = user.email
+            } else {
+                displayName = user.displayName
+            }
+
+            this.setState({
+                author: displayName
+            })
+        })
     }
 
     memoDataHandler = (event) => {

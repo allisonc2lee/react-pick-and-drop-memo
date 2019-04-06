@@ -7,8 +7,8 @@ const Header = props => {
     const [auth, setAuth] = useState(false)
 
     const [authNav, setAuthNav] = useState([
-        {link: "/addNewMemo", content: 'Add New'},
-        {link: "/user", content: 'Profile'}
+        {name: 'submit-page',link: "/addNewMemo", content: 'Add New'},
+        {name: 'user-page',link: "/user", content: 'Profile'}
     ])
 
     useState(() => {
@@ -17,7 +17,16 @@ const Header = props => {
         })
     })
 
-    const afterLogin = authNav.map(auth => <Link to={auth.link}>{auth.content}</Link>)
+    const afterLogin = authNav.map(auth => <li key={auth.name}><Link to={auth.link}>{auth.content}</Link></li>)
+
+    let logOut = props.login
+    let showLogOutButton
+
+    if(!logOut) {
+        showLogOutButton = null
+    } else {
+        showLogOutButton = <li><a href="#" onClick={props.SignOutUser}>Log Out</a></li>
+    }
 
     return(
         <>
@@ -26,7 +35,8 @@ const Header = props => {
                     <Link to="/">
                         <h1>Pick and Drop</h1>
                     </Link>
-                    { auth ? afterLogin : <Link to="/user">Login</Link> }
+                    { auth ? afterLogin  : <Link to="/user">Login</Link> }
+                    { showLogOutButton }
                 </ul>
 
             </nav>

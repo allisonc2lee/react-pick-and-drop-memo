@@ -23,7 +23,7 @@ class User extends Component{
 
             let displayName
 
-            if(user.displayName) {
+            if(!user.displayName) {
                 displayName = user.email
             } else {
                 displayName = user.displayName
@@ -48,9 +48,8 @@ class User extends Component{
             .then(this.authHandler)
     }
     
-    // loadMemoData = () => {
-    //     axios.get()
-    // }
+
+
 
     render() {
 
