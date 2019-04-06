@@ -18,15 +18,19 @@ class SubmitMemo extends Component {
 
             let displayName
 
-            if(!user.displayName) {
-                displayName = user.email
-            } else {
-                displayName = user.displayName
+            if(user) {
+                if(!user.displayName) {
+                    displayName = user.email
+                } else {
+                    displayName = user.displayName
+                }
+
+                this.setState({
+                    author: displayName
+                })
             }
 
-            this.setState({
-                author: displayName
-            })
+
         })
     }
 

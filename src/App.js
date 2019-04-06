@@ -15,10 +15,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-      firebase.auth().onAuthStateChanged(() => {
-        this.setState({
-          login: true
-        })
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.setState({login: true})
+      }
     })
   }
 

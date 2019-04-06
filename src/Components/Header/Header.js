@@ -23,9 +23,12 @@ const Header = props => {
     let showLogOutButton
 
     if(!logOut) {
-        showLogOutButton = null
+        showLogOutButton = <li><Link to="/user">Login</Link></li>
     } else {
-        showLogOutButton = <li><a href="#" onClick={props.SignOutUser}>Log Out</a></li>
+        showLogOutButton = <>
+            {afterLogin}
+            <li><a href="#" onClick={props.SignOutUser}>Log Out</a></li>
+        </>
     }
 
     return(
@@ -35,9 +38,8 @@ const Header = props => {
                     <Link to="/">
                         <h1>Pick and Drop</h1>
                     </Link>
-                    { auth ? afterLogin  : <Link to="/user">Login</Link> }
-                    { showLogOutButton }
-                </ul>
+                    {/* { auth ? afterLogin  : <Link to="/user">Login</Link> } */}
+                    { showLogOutButton }                </ul>
 
             </nav>
         </>

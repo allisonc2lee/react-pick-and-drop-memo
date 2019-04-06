@@ -14,7 +14,7 @@ class User extends Component{
         ],
         didAuth: false,
         userId: null,
-        userName: null,
+        userName: "",
         userIcon: null
     }
 
@@ -23,17 +23,19 @@ class User extends Component{
 
             let displayName
 
-            if(!user.displayName) {
-                displayName = user.email
-            } else {
-                displayName = user.displayName
-            }
+            if(user) {
+                if(!user.displayName) {
+                    displayName = user.email
+                } else {
+                    displayName = user.displayName
+                }
 
-            this.setState({
-                didAuth: true,
-                userId: user.uid,
-                userName: displayName
-            })
+                this.setState({
+                    didAuth: true,
+                    userId: user.uid,
+                    userName: displayName
+                })
+            }
             console.log(user)
         })
     }
