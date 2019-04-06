@@ -34,8 +34,6 @@ class App extends Component {
     return (
       <div className="App">
         <Header SignOutUser={this.SignOutUser} login={this.state.login}/>
-
-
         {this.state.login ?         
           <Switch>
               <Route path="memo/:id" component={Memo} />

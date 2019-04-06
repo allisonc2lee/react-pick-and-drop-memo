@@ -10,6 +10,7 @@ class SubmitMemo extends Component {
         title: '',
         message: '',
         author: '',
+        uid: '',
         submitted: false
     }
 
@@ -26,7 +27,8 @@ class SubmitMemo extends Component {
                 }
 
                 this.setState({
-                    author: displayName
+                    author: displayName,
+                    uid: user.uid
                 })
             }
 
@@ -41,9 +43,8 @@ class SubmitMemo extends Component {
             message: this.state.message,
             author: this.state.author
         }
-        // const { params } = this.props.match
         
-        axios.post('/memos.json', memo) 
+        axios.post(`${this.state.uid}/memos.json`, memo) 
             .then(res => {
                 console.log(res)
                 this.props.history.push('/memos')
