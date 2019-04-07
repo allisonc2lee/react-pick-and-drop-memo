@@ -39,29 +39,31 @@ class Homepage extends Component {
 
     componentDidUpdate(prevState) {
         if(prevState.memos !== false) {
-            let memosData = Object.keys(this.state.memos).map(key => {
-                let arr = [...Array(this.state.memos[key])]
-                return arr.map(memo => {
-                    return <li>{memo.message}</li>
-                });
-            })
-            console.log(memosData)
+            // let memosData = Object.keys(this.state.memos).map(key => {
+            //     let arr = [...Array(this.state.memos[key])]
+            //     return arr.map(memo => {
+            //         return <li>{memo.message}</li>
+            //     });
+            // })
+            // console.log(memosData)
+            // return memosData
+            this.loadData()
         }
     }
 
+    loadData() {
+        let memosData = Object.keys(this.state.memos).map(key => {
+            let arr = [...Array(this.state.memos[key])]
+            return arr.map(memo => {
+                return <li>{memo.message}</li>
+            });
+        })
+        console.log(memosData)
+        return memosData
+    }
 
 
     render() {
-
-        let memosData
-
-        // if(this.state.updated) {
-        //     memosData = Object.keys[this.state.memos].map(key => {
-        //         return [...Array(this.state.memos[key])].map(memo => {
-        //             return <li>{memo.message}</li>;
-        //         });
-        //     })
-        // }
 
         return (
             <>  
@@ -77,7 +79,6 @@ class Homepage extends Component {
     
                 {/* <MemoGrid notes={memos} url={props.match.path}/> */}
 
-                { memosData }
     
                 { this.state.fetchData ? <p>Failed to get the memo :o </p> : null }
             </>
