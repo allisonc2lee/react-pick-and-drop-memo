@@ -35,7 +35,8 @@ class User extends Component{
                 this.setState({
                     didAuth: true,
                     userId: user.uid,
-                    userName: displayName
+                    userName: displayName,
+                    userIcon: user.photoURL
                 })
 
                 this.loadMemoData()
@@ -51,7 +52,7 @@ class User extends Component{
     }
 
     loadMemoData() {
-        axios.get(`https://react-drop-and-pick.firebaseio.com/memos/${this.state.userId}.json`)
+        axios.get(`/memos/${this.state.userId}.json`)
             .then(res => {
                 console.log(res.data)
                 this.setState({
@@ -69,7 +70,11 @@ class User extends Component{
 
         if(isLoggedIn) {
             logined = <div>
-                        <UserProfile name={this.state.userName} />
+                        <UserProfile 
+                            userData={this.state.didAuth}
+                            name={this.state.userName} 
+                            userIcon={this.state.userIcon}  
+                        />
                         <MemoGrid notes={this.state.myMemo} url={this.props.match.path}/>
                     </div>
         } else {

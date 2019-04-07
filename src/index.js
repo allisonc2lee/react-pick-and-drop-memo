@@ -5,7 +5,8 @@ import './css/style.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
-axios.defaults.baseURL = 'https://my-json-server.typicode.com/chingchinglcc/fake-json-placeholder';
+
+axios.defaults.baseURL = 'https://react-drop-and-pick.firebaseio.com';
 
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
 

@@ -13,13 +13,11 @@ const Homepage = (props) => {
     const [loading, setLoading] = useState(true);
     const [fetchData, setFetchData] = useState(false);
 
-    const memoStorageUrl = '/db'
 
     useEffect(() => {
         // console.log(props)
-        axios.get(memoStorageUrl)
+        axios.get('/memos.json')
         .then(response => {
-            // console.log(response.data.posts)
             setLoading(false)
             setMemos(response.data.posts)
         })
