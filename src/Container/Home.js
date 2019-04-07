@@ -16,14 +16,30 @@ const Homepage = (props) => {
 
     useEffect(() => {
         // console.log(props)
+
+        let shit
+
         axios.get('/memos.json')
         .then(response => {
             setLoading(false)
-            setMemos(response.data.posts)
+
+            let newArr = {...response.data}
+            console.log(newArr)
+
+            // let memosData = Object.keys[response.data].map(key => {
+            //     return [...Array(response.data[key])].map(memo => {
+            //         return <li>{memo.message}</li>;
+            //     });
+            // })
+            // setMemos(memosData)
+
         })
+
         .catch(error =>
             setFetchData(true)
         )
+
+
     },[]) 
 
 
@@ -36,8 +52,11 @@ const Homepage = (props) => {
                 color={'#123abc'}
                 />
                 </div>  
-            : <MemoGrid notes={memos} url={props.match.path}/> }
+                
+            :  null }
+
             {/* <MemoGrid notes={memos} url={props.match.path}/> */}
+
             { fetchData ? <p>Failed to get the memo :o </p> : null }
         </>
     )

@@ -32,8 +32,6 @@ class SubmitMemo extends Component {
                     uid: user.uid
                 })
             }
-
-
         })
     }
 
@@ -41,12 +39,13 @@ class SubmitMemo extends Component {
         event.preventDefault()
         const memo = {
             id: new Date().valueOf(),
+            uid: this.state.uid,
             title: this.state.title,
             message: this.state.message,
             author: this.state.author
         }
         
-        axios.post(`/memos/${this.state.uid}.json`, memo) 
+        axios.post('/memos.json', memo) 
             .then(res => {
                 console.log(res)
                 this.props.history.push('/memos')
@@ -58,6 +57,13 @@ class SubmitMemo extends Component {
         })
 
     }
+
+        loadMemoData ( memo ) {
+        const sum = Object.keys( memo )
+            .map( id => {
+                return memo[id];
+            } )
+        }
 
         render() {
             return(

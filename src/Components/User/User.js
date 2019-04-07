@@ -52,7 +52,7 @@ class User extends Component{
     }
 
     loadMemoData() {
-        axios.get(`/memos/${this.state.userId}.json`)
+        axios.get(`/memos.json`)
             .then(res => {
                 console.log(res.data)
                 this.setState({
