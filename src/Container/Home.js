@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { Component }  from 'react'
 // import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -7,53 +7,61 @@ import { ClipLoader } from 'react-spinners';
 import MemoGrid from '../Components/MemosGrid/MemoGrid'
 // import Header from '../Components/Header/Header'
 
-const Homepage = (props) => {
+class Homepage extends Component {
 
-    const [memos, setMemos] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [fetchData, setFetchData] = useState(false);
+    state = {
+        memos: null,
+        loading: true,
+        fetchDate: false
+    }
 
-
-    useEffect(() => {
-        // console.log(props)
+    componentDidMount() {
         axios.get('/memos.json')
         .then(response => {
-            setLoading(false)
             let arr = {...response.data}
-            return arr
+            this.setState({
+                loading: false,
+                memos: arr
+            })
+            console.log(arr)
 
         })
 
         .catch(error =>
-            setFetchData(true)
+            this.setState({
+                fetchData: true
+            })
         )
+    }
 
-        // let memosData = Object.keys[response.data].map(key => {
-        //     return [...Array(response.data[key])].map(memo => {
+    render() {
+
+        // let memosData = Object.keys[this.state.memos].map(key => {
+        //     return [...Array(this.state.memos[key])].map(memo => {
         //         return <li>{memo.message}</li>;
         //     });
         // })
-        // setMemos(memosData)
-    },[]) 
 
+        return (
+            <>  
+                { this.state.loading ? <div className='sweet-loading'>
+                    <ClipLoader
+                    sizeUnit={"px"}
+                    size={150}
+                    color={'#123abc'}
+                    />
+                    </div>  
+                    
+                :  null }
+    
+                {/* <MemoGrid notes={memos} url={props.match.path}/> */}
 
-    return (
-        <>  
-            { loading ? <div className='sweet-loading'>
-                <ClipLoader
-                sizeUnit={"px"}
-                size={150}
-                color={'#123abc'}
-                />
-                </div>  
                 
-            :  null }
-
-            {/* <MemoGrid notes={memos} url={props.match.path}/> */}
-
-            { fetchData ? <p>Failed to get the memo :o </p> : null }
-        </>
-    )
+    
+                { this.state.fetchData ? <p>Failed to get the memo :o </p> : null }
+            </>
+        )
+    }
 }
 
 export default Homepage
