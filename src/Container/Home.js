@@ -16,22 +16,11 @@ const Homepage = (props) => {
 
     useEffect(() => {
         // console.log(props)
-
-        let shit
-
         axios.get('/memos.json')
         .then(response => {
             setLoading(false)
-
-            let newArr = {...response.data}
-            console.log(newArr)
-
-            // let memosData = Object.keys[response.data].map(key => {
-            //     return [...Array(response.data[key])].map(memo => {
-            //         return <li>{memo.message}</li>;
-            //     });
-            // })
-            // setMemos(memosData)
+            let arr = {...response.data}
+            return arr
 
         })
 
@@ -39,7 +28,12 @@ const Homepage = (props) => {
             setFetchData(true)
         )
 
-
+        // let memosData = Object.keys[response.data].map(key => {
+        //     return [...Array(response.data[key])].map(memo => {
+        //         return <li>{memo.message}</li>;
+        //     });
+        // })
+        // setMemos(memosData)
     },[]) 
 
 
