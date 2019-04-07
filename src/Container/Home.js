@@ -12,7 +12,8 @@ class Homepage extends Component {
     state = {
         memos: null,
         loading: true,
-        fetchDate: false
+        fetchDate: false,
+        updated: false
     }
 
     componentDidMount() {
@@ -21,7 +22,8 @@ class Homepage extends Component {
             let arr = {...response.data}
             this.setState({
                 loading: false,
-                memos: arr
+                memos: arr,
+                updated: true
             })
             console.log(arr)
 
@@ -34,13 +36,32 @@ class Homepage extends Component {
         )
     }
 
+
+    componentDidUpdate(prevState) {
+        if(prevState.memos !== false) {
+            let memosData = Object.keys(this.state.memos).map(key => {
+                let arr = [...Array(this.state.memos[key])]
+                return arr.map(memo => {
+                    return <li>{memo.message}</li>
+                });
+            })
+            console.log(memosData)
+        }
+    }
+
+
+
     render() {
 
-        // let memosData = Object.keys[this.state.memos].map(key => {
-        //     return [...Array(this.state.memos[key])].map(memo => {
-        //         return <li>{memo.message}</li>;
-        //     });
-        // })
+        let memosData
+
+        // if(this.state.updated) {
+        //     memosData = Object.keys[this.state.memos].map(key => {
+        //         return [...Array(this.state.memos[key])].map(memo => {
+        //             return <li>{memo.message}</li>;
+        //         });
+        //     })
+        // }
 
         return (
             <>  
@@ -56,7 +77,7 @@ class Homepage extends Component {
     
                 {/* <MemoGrid notes={memos} url={props.match.path}/> */}
 
-                
+                { memosData }
     
                 { this.state.fetchData ? <p>Failed to get the memo :o </p> : null }
             </>
