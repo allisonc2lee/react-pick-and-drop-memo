@@ -7,7 +7,7 @@ const Memo = (props) => {
 
     return(
         <>
-            <div className="memo" onMouseOver={() => setHoverMemo(true)} onMouseLeave={() => setHoverMemo(false)}>
+            <div key={props.id} className="memo" onMouseOver={() => setHoverMemo(true)} onMouseLeave={() => setHoverMemo(false)}>
                 <h3>{props.name}</h3>
                 <p>{props.message}</p>
                 { hoverMemo ? <button onClick={() => {setClickedReply(true)}}>Reply</button> : null}

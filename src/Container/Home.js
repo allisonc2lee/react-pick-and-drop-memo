@@ -19,20 +19,7 @@ class Homepage extends Component {
     componentDidMount() {
         axios.get('/memos.json')
         .then(response => {
-            let memos
             let arr = {...response.data}
-            let test = Object.keys(arr).map((key, index) => {
-                let arr = [...Array(this.state.memos[key])]
-                return arr
-            })
-
-
-            // let memosData = Object.keys(this.state.memos).map(key => {
-            //     let arr = [...Array(this.state.memos[key])]
-            //     console.log(arr)
-            //     return arr
-                
-            // })
 
             this.setState({
                 loading: false,
@@ -48,36 +35,21 @@ class Homepage extends Component {
             })
         )
     }
-
-
-    // componentDidUpdate(prevState) {
-    //     if(prevState.memos !== false) {
-    //         this.loadData()
-    //     }
-    // }
-
-    // loadData() {
-    //     let memosData = Object.keys(this.state.memos).map(key => {
-    //         let arr = [...Array(this.state.memos[key])]
-    //         return arr.map(memo => {
-    //             return <li>{memo.message}</li>
-    //         });
-    //     })
-    //     console.log(memosData)
-    //     return memosData
-    // }
-
-
     render() {
 
         let loadData = <li>Error</li>
 
         if(this.state.memos !== false) {
-            loadData = Object.keys(this.state.memos).map(key => {
+            loadData = Object.keys(this.state.memos).map((key) => {
                 let arr = [...Array(this.state.memos[key])]
-                return arr.map(memo => {
-                    return <li>{memo.message}</li>
-                });
+                let memoKey
+                if( key.charAt( 0 ) === '-' ) {
+                    memoKey = key.slice( 1 );
+                    return <MemoGrid  notes={arr} url={this.props.match.path} key={memoKey}/>
+                } else {
+                    return <MemoGrid  notes={arr} url={this.props.match.path} key={key} />
+                }
+                
             })
         }
 
@@ -93,13 +65,9 @@ class Homepage extends Component {
                     
                 :  null }
 
-                <ul>
+                <div className="memoGrid">
                     { loadData }
-                </ul>
-    
-                {/* <MemoGrid notes={memos} url={props.match.path}/> */}
-
-    
+                </div>
                 { this.state.fetchData ? <p>Failed to get the memo :o </p> : null }
             </>
         )

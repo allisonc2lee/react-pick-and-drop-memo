@@ -7,19 +7,15 @@ const MemoGrid = (props) => {
         return(
             <Memo 
                 key={memo.id}
-                name={memo.name}
-                message={memo.title}
+                name={memo.author}
+                message={memo.message}
             />
         )
     })
 
     return(
         <>
-            <h2>MemoGrid Component</h2>
-            <ul>
-                { memoList }
-            </ul> 
-            
+            { memoList }
         </>
     )
 }
