@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import firebase from "firebase"
 import axios from 'axios'
 
+import Grid from '@material-ui/core/Grid';
+
 import app from '../../base'
 import MemoGrid from '../MemosGrid/MemoGrid'
 import UserProfile from '../UserProfile/UserProfile'
 
 class User extends Component{
     state = {
-        // myMemo: [
-        //     {id: 11, name: 'User Bobby', message: "Memo on the User page 1"},
-        //     {id: 12, name: 'User Bobby', message: "Memo on the User page 2"},
-        //     {id: 13, name: 'User Bobby', message: "Memo on the User page 3"},
-        // ],
         memos: {},
         didAuth: false,
         userId: null,
@@ -101,8 +98,13 @@ class User extends Component{
         
 
         return(
-            <>  { logined }
-                { userData }
+            <>  
+                <Grid container spacing={16}>
+                    { logined }
+                    <Grid container item xs={12} spacing={24}>
+                        { userData }
+                    </Grid>
+                </Grid>
             </>
         )
     }

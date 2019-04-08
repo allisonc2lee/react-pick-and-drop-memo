@@ -1,5 +1,6 @@
 import React from 'react';
 import Memo from '../Memo/Memo'
+import Grid from '@material-ui/core/Grid';
 
 const MemoGrid = (props) => {
 
@@ -15,7 +16,7 @@ const MemoGrid = (props) => {
     })
 
     return(
-        <>
+        <>      
             { memoList }
         </>
     )

@@ -1,5 +1,6 @@
 import React, { Component }  from 'react'
 import axios from 'axios'
+import Grid from '@material-ui/core/Grid';
 import { ClipLoader } from 'react-spinners';
 
 import MemoGrid from '../Components/MemosGrid/MemoGrid'
@@ -51,20 +52,24 @@ class Homepage extends Component {
 
         return (
             <>  
-                { this.state.loading ? <div className='sweet-loading'>
-                    <ClipLoader
-                    sizeUnit={"px"}
-                    size={150}
-                    color={'#123abc'}
-                    />
-                    </div>  
-                    
-                :  null }
 
-                <div className="memoGrid">
-                    { loadData }
-                </div>
-                { this.state.fetchData ? <p>Failed to get the memo :o </p> : null }
+
+               
+                
+                <Grid container spacing={16}>
+                    
+                    { this.state.loading ? <div className='sweet-loading'>
+                            <ClipLoader
+                            sizeUnit={"px"}
+                            size={150}
+                            color={'#123abc'}
+                            />
+                            </div>  
+                        :  null }
+                    <Grid container item xs={12} spacing={24}>
+                        { loadData }
+                    </Grid>
+                </Grid>
             </>
         )
     }
