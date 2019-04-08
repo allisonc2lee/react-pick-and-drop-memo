@@ -10,12 +10,29 @@ const MemoGrid = (props) => {
     const [clickedReply, setClickedReply] = useState(false)
     const [hoverMemo, setHoverMemo] = useState(false)
     const [message, setMessage] = useState('')
-    const [memos, setMemos] = useState({})
-    const [ selected, setSelected ] = useState([])
+    
+    
+
+    function deleteMemo(event) {
+        props.notes.map(note => {
+            console.log(note.uid)
+            if(note.uid === props.userId) {
+                axios.delete(`/memos/${props.datakey}.json`)
+                    .then(res=> {
+                        console.log(res)
+                })
+            }
+        })
+    }
+
+    function replyMemo(event) {
+        event.preventDefault()
+        
+    }
 
     const memoList = props.notes.map(memo => {
         return(
-                <Grid item xs={4} key={memo.id}>
+                <Grid item xs={4} key={memo.id} datakey={memo.dataKey}>
                     <Paper className="memoPaper" 
                             onMouseOver={() => setHoverMemo(true)} 
                             onMouseLeave={() => {
@@ -37,7 +54,7 @@ const MemoGrid = (props) => {
                             { clickedReply ? 
                                 <form>
                                     <textarea name="" id="" cols="30" rows="10" onChange={(e) => setMessage(e.target.value)}></textarea>
-                                    <Button variant="outlined" onClick={props.replyMemo}>submit</Button>
+                                    <Button variant="outlined" onClick={deleteMemo}>submit</Button>
                                 </form> 
                             : null }
                         </div>

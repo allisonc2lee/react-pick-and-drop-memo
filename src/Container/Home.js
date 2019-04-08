@@ -11,7 +11,8 @@ class Homepage extends Component {
         memos: {},
         loading: true,
         fetchDate: false,
-        updated: false
+        updated: false,
+        selected: {}
     }
 
     componentDidMount() {
@@ -33,11 +34,6 @@ class Homepage extends Component {
         )
     }
 
-    replyMemo() {
-        console.log('replyMemo')
-    }
-
-
 
     render() {
 
@@ -45,13 +41,14 @@ class Homepage extends Component {
 
         if(this.state.memos !== false) {
             loadData = Object.keys(this.state.memos).map((key) => {
+                // console.log(key)
                 let arr = [...Array(this.state.memos[key])]
                 let memoKey
                 if( key.charAt( 0 ) === '-' ) {
                     memoKey = key.slice( 1 );
-                    return <MemoGrid notes={arr} url={this.props.match.path} key={memoKey} replyMemo={this.replyMemo} />
+                    return <MemoGrid notes={arr} url={this.props.match.path} key={memoKey} replyMemo={this.replyMemo} datakey={key}/>
                 } else {
-                    return <MemoGrid notes={arr} url={this.props.match.path} key={key} replyMemo={this.replyMemo}/>
+                    return <MemoGrid notes={arr} url={this.props.match.path} key={key} replyMemo={this.replyMemo} datakey={key}/>
                 }
                 
             })
