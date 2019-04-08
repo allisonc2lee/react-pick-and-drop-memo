@@ -32,6 +32,13 @@ class Homepage extends Component {
             })
         )
     }
+
+    replyMemo() {
+        console.log('replyMemo')
+    }
+
+
+
     render() {
 
         let loadData = <li>Error</li>
@@ -42,9 +49,9 @@ class Homepage extends Component {
                 let memoKey
                 if( key.charAt( 0 ) === '-' ) {
                     memoKey = key.slice( 1 );
-                    return <MemoGrid notes={arr} url={this.props.match.path} key={memoKey}/>
+                    return <MemoGrid notes={arr} url={this.props.match.path} key={memoKey} replyMemo={this.replyMemo} />
                 } else {
-                    return <MemoGrid notes={arr} url={this.props.match.path} key={key} />
+                    return <MemoGrid notes={arr} url={this.props.match.path} key={key} replyMemo={this.replyMemo}/>
                 }
                 
             })

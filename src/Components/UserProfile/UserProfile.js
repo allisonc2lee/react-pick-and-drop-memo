@@ -20,7 +20,7 @@ const ProfileIcon = props => {
                 <Avatar  className={classes.bigAvatar} src={props.userIcon} alt={props.name} /> 
                 : <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdvxYkwraOEJ_Rm2XUk_h-uwM91uFfTIkd8ky55rwgVtHWKl_Tg" alt="Drop and Pick" />
             }
-            <p class="userprofile--container_name">{ props.name }</p>
+            <p className="userprofile--container_name">{ props.name }</p>
         </Grid>
     )
 }
