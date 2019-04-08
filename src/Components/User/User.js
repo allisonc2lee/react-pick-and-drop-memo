@@ -57,10 +57,7 @@ class User extends Component{
                 memos: arr
             })
         })
-
     }
-
-
 
     render() {
 

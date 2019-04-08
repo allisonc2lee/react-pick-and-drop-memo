@@ -9,8 +9,23 @@ const Memo = (props) => {
     const [clickedReply, setClickedReply] = useState(false)
     const [hoverMemo, setHoverMemo] = useState(false)
     const [message, setMessage] = useState('')
-    const [replied, setReplied] = useState(false)
+    const [memos, setMemos] = useState({})
 
+    // function replyMemo(e) {
+
+    //     axios.get('/memos.json')
+    //         .then(res => {
+    //             let arr = {...res.data}
+    //             setMemos(arr)
+    //             // console.log(memos)
+    //         })
+        
+    //     let selectedItem = Object.keys(memos).map((key) => {
+    //         console.log(key)
+    //     })
+    //     console.log(e)
+    //     //return selectedItem
+    // }
 
     return(
         <>
@@ -22,7 +37,6 @@ const Memo = (props) => {
                             setClickedReply(!setClickedReply)
                         }}>
                     <div 
-                        key={props.id} 
                         className="memo" >
                         <h3>{props.name}</h3>
                         <p>{props.message}</p>
@@ -37,6 +51,7 @@ const Memo = (props) => {
                         { clickedReply ? 
                             <form>
                                 <textarea name="" id="" cols="30" rows="10" onChange={(e) => setMessage(e.target.value)}></textarea>
+                                <Button variant="outlined" onClick={props.replyMemo}>submit</Button>
                             </form> 
                         : null }
                     </div>
