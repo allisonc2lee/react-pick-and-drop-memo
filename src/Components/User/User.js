@@ -68,14 +68,12 @@ class User extends Component{
         let logined
 
         if(isLoggedIn) {
-            logined = <div>
+            logined = 
                         <UserProfile 
                             userData={this.state.didAuth}
                             name={this.state.userName} 
                             userIcon={this.state.userIcon}  
                         />
-                        {/* <MemoGrid notes={this.state.myMemo} url={this.props.match.path}/> */}
-                    </div>
         } else {
             logined = null
         }

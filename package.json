@@ -9,6 +9,7 @@
         "firebase": "^5.9.3",
         "node-sass": "^4.11.0",
         "prettier": "^1.16.4",
+        "prop-types": "^15.7.2",
         "re-base": "^4.0.0",
         "react": "^16.8.4",
         "react-dom": "^16.8.4",
