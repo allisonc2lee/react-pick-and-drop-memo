@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Memo from '../Memo/Memo'
 
 const MemoGrid = (props) => {
@@ -9,6 +9,7 @@ const MemoGrid = (props) => {
                 key={memo.id}
                 name={memo.author}
                 message={memo.message}
+                uid={memo.uid}
             />
         )
     })

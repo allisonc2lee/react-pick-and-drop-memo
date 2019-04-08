@@ -8,21 +8,22 @@ import UserProfile from '../UserProfile/UserProfile'
 
 class User extends Component{
     state = {
-        myMemo: [
-            {id: 11, name: 'User Bobby', message: "Memo on the User page 1"},
-            {id: 12, name: 'User Bobby', message: "Memo on the User page 2"},
-            {id: 13, name: 'User Bobby', message: "Memo on the User page 3"},
-        ],
+        // myMemo: [
+        //     {id: 11, name: 'User Bobby', message: "Memo on the User page 1"},
+        //     {id: 12, name: 'User Bobby', message: "Memo on the User page 2"},
+        //     {id: 13, name: 'User Bobby', message: "Memo on the User page 3"},
+        // ],
+        memos: {},
         didAuth: false,
         userId: null,
         userName: "",
         userIcon: null,
-        testing: []
     }
 
     componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
 
+
+        firebase.auth().onAuthStateChanged(user => {
             let displayName
 
             if(user) {
@@ -39,9 +40,8 @@ class User extends Component{
                     userIcon: user.photoURL
                 })
 
-                this.loadMemoData()
+                this.loadUserMemo()
             }
-            console.log(user)
         })
     }
 
@@ -51,16 +51,19 @@ class User extends Component{
             .then(this.authHandler)
     }
 
-    loadMemoData() {
-        axios.get(`/memos.json`)
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    testing: res.data
-                })
+
+    loadUserMemo() {
+        axios.get('/memos.json')
+        .then(response => {
+            let arr = {...response.data}
+            this.setState({
+                memos: arr
             })
-            .catch(error => console.log(error))
+            console.log(this.state.memos)
+        })
+
     }
+
 
 
     render() {
@@ -75,15 +78,47 @@ class User extends Component{
                             name={this.state.userName} 
                             userIcon={this.state.userIcon}  
                         />
-                        <MemoGrid notes={this.state.myMemo} url={this.props.match.path}/>
+                        {/* <MemoGrid notes={this.state.myMemo} url={this.props.match.path}/> */}
                     </div>
         } else {
             logined = null
         }
 
+        let userData = <p>Failed to load User Data</p>
+
+        if(this.state.memos) {
+            userData = Object.keys(this.state.memos).map((memo) => {
+
+                let userArr = [...Array( this.state.memos[memo] )]
+
+                return userArr.map(memo => {
+                    if(memo.uid === this.state.userId) {
+                        return <li>{memo.message}</li>
+                    }
+                })
+            })
+        }
+        
+
+
+
+        // if(this.state.memos !== false) {
+        //     loadData = Object.keys(this.state.memos).map((key) => {
+        //         let arr = [...Array(this.state.memos[key])]
+        //         let memoKey
+        //         if( key.charAt( 0 ) === '-' ) {
+        //             memoKey = key.slice( 1 );
+        //             return <MemoGrid  notes={arr} url={this.props.match.path} key={memoKey}/>
+        //         } else {
+        //             return <MemoGrid  notes={arr} url={this.props.match.path} key={key} />
+        //         }
+                
+        //     })
+        // }
+
         return(
-            <>  
-                { logined }
+            <>  { logined }
+                { userData }
             </>
         )
     }

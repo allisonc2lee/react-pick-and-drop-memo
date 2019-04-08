@@ -1,11 +1,8 @@
 import React, { Component }  from 'react'
-// import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
-
 import { ClipLoader } from 'react-spinners';
 
 import MemoGrid from '../Components/MemosGrid/MemoGrid'
-// import Header from '../Components/Header/Header'
 
 class Homepage extends Component {
 
@@ -20,7 +17,6 @@ class Homepage extends Component {
         axios.get('/memos.json')
         .then(response => {
             let arr = {...response.data}
-
             this.setState({
                 loading: false,
                 memos: arr,

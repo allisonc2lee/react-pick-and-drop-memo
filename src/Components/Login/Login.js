@@ -11,9 +11,9 @@ class User extends Component{
         })
     }
 
-    authHandler = async(authData) => {
-        console.log(authData)
-    }
+    // authHandler = async(authData) => {
+    //     console.log(authData)
+    // }
 
     authenticate = (provider) => {
         const authProvider = new firebase.auth[`${provider}AuthProvider`]()
