@@ -28,17 +28,13 @@ const MemoGrid = (props) => {
     
 
     function deleteMemo(event) {
-        props.notes.map(note => {
-            if(note.uid === props.userId) {
+
                 axios.delete(`/memos/${props.datakey}.json`)
                     .then(res=> {
                         console.log(res)
                 })
-                console.log('Too bad!')
-            } else {
-                console.log('you are not the owner of this memo')
-            }
-        })
+
+
     }
 
     const memoList = props.notes.map(memo => {

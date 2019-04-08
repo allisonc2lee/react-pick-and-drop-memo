@@ -1,4 +1,5 @@
 import React, { Component }  from 'react'
+import firebase from 'firebase'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid';
 import { ClipLoader } from 'react-spinners';
@@ -16,14 +17,27 @@ class Homepage extends Component {
         userId: ''
     }
 
+    
+
     componentDidMount() {
+        let uid
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user) {
+              this.setState({
+                userId: user.id
+              })
+            }
+        })
+        
         axios.get('/memos.json')
         .then(response => {
             let arr = {...response.data}
             this.setState({
                 loading: false,
                 memos: arr,
-                updated: true
+                updated: true,
+                
             })
 
         })
@@ -33,6 +47,7 @@ class Homepage extends Component {
                 fetchData: true
             })
         )
+
     }
 
 
