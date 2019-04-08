@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
+
 import firebase from 'firebase'
 import axios from '../../axios'
-import { Redirect } from 'react-router-dom'
+
+import Home from '../../Container/Home'
 
 class SubmitMemo extends Component {
 
@@ -12,7 +14,8 @@ class SubmitMemo extends Component {
         author: '',
         memoId: '',
         uid: '',
-        submitted: false
+        submitted: false,
+        goHome: false
     }
 
     componentDidMount() {
@@ -48,7 +51,8 @@ class SubmitMemo extends Component {
         axios.post('/memos.json', memo) 
             .then(res => {
                 console.log(res)
-                this.props.history.push('/memos')
+               // this.props.history.push('/memos')
+               
             })
             .catch(error => console.log(error))
 
@@ -57,15 +61,8 @@ class SubmitMemo extends Component {
         })
 
     }
-
-        loadMemoData ( memo ) {
-        const sum = Object.keys( memo )
-            .map( id => {
-                return memo[id];
-            } )
-        }
-
         render() {
+
             return(
                 <>  
                     <div className="">
@@ -79,7 +76,6 @@ class SubmitMemo extends Component {
                             <button onClick={this.memoDataHandler}>Add</button>
                         </form>
                     </div> 
-                    {this.state.submitted ? <Redirect to='/' /> : null}
                 </>
             )
         }

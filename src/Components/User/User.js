@@ -17,7 +17,7 @@ class User extends Component{
         didAuth: false,
         userId: null,
         userName: "",
-        userIcon: null,
+        userIcon: null
     }
 
     componentDidMount() {
@@ -59,7 +59,6 @@ class User extends Component{
             this.setState({
                 memos: arr
             })
-            console.log(this.state.memos)
         })
 
     }
