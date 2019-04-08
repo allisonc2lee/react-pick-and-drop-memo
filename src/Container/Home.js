@@ -41,9 +41,9 @@ class Homepage extends Component {
                 let memoKey
                 if( key.charAt( 0 ) === '-' ) {
                     memoKey = key.slice( 1 );
-                    return <MemoGrid  notes={arr} url={this.props.match.path} key={memoKey}/>
+                    return <MemoGrid notes={arr} url={this.props.match.path} key={memoKey}/>
                 } else {
-                    return <MemoGrid  notes={arr} url={this.props.match.path} key={key} />
+                    return <MemoGrid notes={arr} url={this.props.match.path} key={key} />
                 }
                 
             })

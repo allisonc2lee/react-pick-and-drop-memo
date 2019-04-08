@@ -93,28 +93,13 @@ class User extends Component{
 
                 return userArr.map(memo => {
                     if(memo.uid === this.state.userId) {
-                        return <li>{memo.message}</li>
+                        // return <li>{memo.message}</li>
+                        return <MemoGrid notes={userArr} url={this.props.match.path} key={memo} />
                     }
                 })
             })
         }
         
-
-
-
-        // if(this.state.memos !== false) {
-        //     loadData = Object.keys(this.state.memos).map((key) => {
-        //         let arr = [...Array(this.state.memos[key])]
-        //         let memoKey
-        //         if( key.charAt( 0 ) === '-' ) {
-        //             memoKey = key.slice( 1 );
-        //             return <MemoGrid  notes={arr} url={this.props.match.path} key={memoKey}/>
-        //         } else {
-        //             return <MemoGrid  notes={arr} url={this.props.match.path} key={key} />
-        //         }
-                
-        //     })
-        // }
 
         return(
             <>  { logined }
