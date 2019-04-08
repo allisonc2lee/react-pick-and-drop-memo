@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -25,6 +26,7 @@ const MemoGrid = (props) => {
     const [clickedReply, setClickedReply] = useState(false)
     const [hoverMemo, setHoverMemo] = useState(false)
     const [message, setMessage] = useState('')
+    const [onUserPage, setOnUserPage] = useState(false)
     
 
     function deleteMemo(event) {
@@ -40,7 +42,7 @@ const MemoGrid = (props) => {
     const memoList = props.notes.map(memo => {
         return(
                 <Grid item xs={6} sm={4} key={memo.id} datakey={memo.dataKey}>
-                    <Paper className="memoPaper" 
+                    <Card className="memoPaper" 
                             onMouseOver={() => setHoverMemo(true)} 
                             onMouseLeave={() => {
                                 setHoverMemo(false)
@@ -50,9 +52,12 @@ const MemoGrid = (props) => {
                             className="memo" >
                             <h3>{memo.author}</h3>
                             <p>{memo.message}</p>
-                            <DeleteIcon className={classes.icon} onClick={deleteMemo} />
+                            { onUserPage ? <DeleteIcon className={classes.icon} onClick={deleteMemo} /> : null }
+                            <IconButton aria-label="Add to favorites">
+                                <FavoriteIcon />
+                            </IconButton>
                         </div>
-                    </Paper>
+                    </Card>
                 </Grid>
         )
     })

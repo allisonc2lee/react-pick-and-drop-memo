@@ -20,15 +20,6 @@ class Homepage extends Component {
     
 
     componentDidMount() {
-        let uid
-
-        firebase.auth().onAuthStateChanged((user) => {
-            if(user) {
-              this.setState({
-                userId: user.id
-              })
-            }
-        })
         
         axios.get('/memos.json')
         .then(response => {
