@@ -5,7 +5,7 @@ import firebase from 'firebase'
 import Homepage from './Container/Home'
 import SubmitMemo from './Components/SubmitMemo/SubmitMemo'
 import User from './Components/User/User'
-import Memo from './Components/Memo/Memo'
+
 import Header from './Components/Header/Header'
 import Login from './Components/Login/Login'
 

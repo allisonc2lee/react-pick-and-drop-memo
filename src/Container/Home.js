@@ -12,7 +12,8 @@ class Homepage extends Component {
         loading: true,
         fetchDate: false,
         updated: false,
-        selected: {}
+        selected: {},
+        userId: ''
     }
 
     componentDidMount() {

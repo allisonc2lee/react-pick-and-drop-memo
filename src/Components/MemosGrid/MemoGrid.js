@@ -1,33 +1,44 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import Memo from '../Memo/Memo'
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    root: {
+      color: theme.palette.text.primary,
+    },
+    icon: {
+      margin: theme.spacing.unit,
+      fontSize: 32,
+      cursor: 'pointer'
+    },
+  });
 
 const MemoGrid = (props) => {
+
+    const { classes } = props;
 
     const [clickedReply, setClickedReply] = useState(false)
     const [hoverMemo, setHoverMemo] = useState(false)
     const [message, setMessage] = useState('')
     
-    
 
     function deleteMemo(event) {
         props.notes.map(note => {
-            console.log(note.uid)
             if(note.uid === props.userId) {
                 axios.delete(`/memos/${props.datakey}.json`)
                     .then(res=> {
                         console.log(res)
                 })
+                console.log('Too bad!')
+            } else {
+                console.log('you are not the owner of this memo')
             }
         })
-    }
-
-    function replyMemo(event) {
-        event.preventDefault()
-        
     }
 
     const memoList = props.notes.map(memo => {
@@ -43,20 +54,7 @@ const MemoGrid = (props) => {
                             className="memo" >
                             <h3>{memo.author}</h3>
                             <p>{memo.message}</p>
-                            { hoverMemo ? <Button 
-                                            variant="outlined" 
-                                            onClick={() => {setClickedReply(!clickedReply)}}
-                                            >
-                            { 
-                                !clickedReply ? 'REPLY' : 'SEND'
-                            }
-                            </Button> : null}
-                            { clickedReply ? 
-                                <form>
-                                    <textarea name="" id="" cols="30" rows="10" onChange={(e) => setMessage(e.target.value)}></textarea>
-                                    <Button variant="outlined" onClick={deleteMemo}>submit</Button>
-                                </form> 
-                            : null }
+                            <DeleteIcon className={classes.icon} onClick={deleteMemo} />
                         </div>
                     </Paper>
                 </Grid>
@@ -70,5 +68,9 @@ const MemoGrid = (props) => {
     )
 }
 
-export default MemoGrid
+MemoGrid.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MemoGrid)
 
