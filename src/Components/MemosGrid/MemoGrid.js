@@ -39,7 +39,7 @@ const MemoGrid = (props) => {
 
     const memoList = props.notes.map(memo => {
         return(
-                <Grid item xs={4} key={memo.id} datakey={memo.dataKey}>
+                <Grid item xs={6} sm={4} key={memo.id} datakey={memo.dataKey}>
                     <Paper className="memoPaper" 
                             onMouseOver={() => setHoverMemo(true)} 
                             onMouseLeave={() => {
