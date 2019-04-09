@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios'
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
@@ -25,6 +25,7 @@ const MemoGrid = (props) => {
 
     function deleteMemo(event) {
         
+        event.preventDefault()
 
         let memoUserId = props.notes
         let myMemoId
@@ -35,10 +36,7 @@ const MemoGrid = (props) => {
         })
         
         if(props.userId === myMemoId) {
-            console.log('yes it is your memo')
             axios.delete(`/memos/${props.datakey}.json`)
-        } else {
-            alert('It is not your memo')
         }
                 
     }
