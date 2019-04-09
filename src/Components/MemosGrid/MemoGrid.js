@@ -21,13 +21,10 @@ const styles = theme => ({
 
 const MemoGrid = (props) => {
 
-    const { classes } = props;
-
-    //const [onUserPage, setOnUserPage] = useState(false)
-    
+    const { classes } = props;    
 
     function deleteMemo(event) {
-        console.log(props.userId)
+        
 
         let memoUserId = props.notes
         let myMemoId
@@ -36,7 +33,6 @@ const MemoGrid = (props) => {
             myMemoId = myMemo.uid
             return myMemoId
         })
-
         
         if(props.userId === myMemoId) {
             console.log('yes it is your memo')
@@ -49,7 +45,7 @@ const MemoGrid = (props) => {
 
     const memoList = props.notes.map(memo => {
         return(
-                <Grid item xs={6} sm={4} key={memo.id} datakey={memo.dataKey}>
+                <Grid item xs={6} sm={4} key={memo.id} datakey={memo.datakey}>
                     <Card className="memoPaper">
                         <div 
                             className="memo" >

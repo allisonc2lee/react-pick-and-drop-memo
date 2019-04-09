@@ -45,7 +45,6 @@ class User extends Component{
     authenticate = (provider) => {
         const authProvider = new firebase.auth[`${provider}AuthProvider`]()
         app.auth().signInWithPopup(authProvider)
-            //.then(this.authHandler)
     }
 
 
@@ -80,15 +79,19 @@ class User extends Component{
         if(this.state.memos) {
             userData = Object.keys(this.state.memos).map((memo) => {
 
+                let key = memo
+
                 let userArr = [...Array( this.state.memos[memo] )]
 
                 return userArr.map(memo => {
                     if(memo.uid === this.state.userId) {
                         // return <li>{memo.message}</li>
+                        
                         return <MemoGrid 
                                     notes={userArr} 
                                     url={this.props.match.path}
                                     key={new Date().valueOf()} 
+                                    datakey={ key }
                                     userId={this.state.userId}
                                     onUserPage={ true }
                                     />

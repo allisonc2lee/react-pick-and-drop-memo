@@ -59,6 +59,9 @@ class Homepage extends Component {
                 // console.log(key)
                 let arr = [...Array(this.state.memos[key])]
                 let memoKey
+
+                console.log(key)
+
                 if( key.charAt( 0 ) === '-' ) {
                     memoKey = key.slice( 1 );
                     return <MemoGrid 
