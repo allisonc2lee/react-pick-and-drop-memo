@@ -86,9 +86,7 @@ class User extends Component{
                 let userArr = [...Array( this.state.memos[memo] )]
 
                 return userArr.map(memo => {
-                    if(memo.uid === this.state.userId) {
-                        // return <li>{memo.message}</li>
-                        
+                    if(memo.uid === this.state.userId) {                        
                         return <MemoGrid 
                                     notes={userArr} 
                                     url={this.props.match.path}
@@ -96,6 +94,7 @@ class User extends Component{
                                     datakey={ key }
                                     userId={this.state.userId}
                                     onUserPage={ true }
+                                    memos={userArr}
                                     />
                     }
                 })
