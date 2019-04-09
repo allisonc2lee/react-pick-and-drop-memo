@@ -21,6 +21,14 @@ class Homepage extends Component {
 
     componentDidMount() {
         
+        let uid
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user) {
+                uid = user.uid
+            }
+        })
+
         axios.get('/memos.json')
         .then(response => {
             let arr = {...response.data}
@@ -28,7 +36,7 @@ class Homepage extends Component {
                 loading: false,
                 memos: arr,
                 updated: true,
-                
+                userId: uid
             })
 
         })

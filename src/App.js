@@ -11,13 +11,18 @@ import Login from './Components/Login/Login'
 
 class App extends Component {
   state = {
-    login: false
+    login: false,
+    userId: ''
   }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
-        this.setState({login: true})
+        console.log(user)
+        this.setState({
+          login: true,
+          userId: user.uid
+        })
       }
     })
   }

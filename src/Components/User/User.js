@@ -45,7 +45,7 @@ class User extends Component{
     authenticate = (provider) => {
         const authProvider = new firebase.auth[`${provider}AuthProvider`]()
         app.auth().signInWithPopup(authProvider)
-            .then(this.authHandler)
+            //.then(this.authHandler)
     }
 
 
