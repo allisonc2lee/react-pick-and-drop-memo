@@ -23,14 +23,11 @@ const MemoGrid = (props) => {
 
     const { classes } = props;
 
-    const [userId, setUserId] = useState('')
-    const [clickedReply, setClickedReply] = useState(false)
-    const [onUserPage, setOnUserPage] = useState(false)
+    //const [onUserPage, setOnUserPage] = useState(false)
     
 
     function deleteMemo(event) {
         console.log(props.userId)
-        //console.log(props.notes.uid)
 
         let memoUserId = props.notes
         let myMemoId
@@ -47,16 +44,6 @@ const MemoGrid = (props) => {
         } else {
             alert('It is not your memo')
         }
-
-        // if(props.userId == props.notes.uid) {
-        //     console.log('It is your memo')
-        //     axios.delete(`/memos/${props.datakey}.json`)
-        //             .then(res=> {
-        //                 console.log(res)
-        //         })
-        // } else {
-        //     console.log('sorry it is not your memo!')
-        // }
                 
     }
 
@@ -68,7 +55,7 @@ const MemoGrid = (props) => {
                             className="memo" >
                             <h3>{memo.author}</h3>
                             <p>{memo.message}</p>
-                            { !onUserPage ? <DeleteIcon className={classes.icon} onClick={deleteMemo} /> : null }
+                            { props.onUserPage ? <DeleteIcon className={classes.icon} onClick={deleteMemo} /> : null }
                             <IconButton aria-label="Add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
