@@ -23,36 +23,52 @@ const MemoGrid = (props) => {
 
     const { classes } = props;
 
+    const [userId, setUserId] = useState('')
     const [clickedReply, setClickedReply] = useState(false)
-    const [hoverMemo, setHoverMemo] = useState(false)
-    const [message, setMessage] = useState('')
     const [onUserPage, setOnUserPage] = useState(false)
     
 
     function deleteMemo(event) {
+        console.log(props.userId)
+        //console.log(props.notes.uid)
 
-                axios.delete(`/memos/${props.datakey}.json`)
-                    .then(res=> {
-                        console.log(res)
-                })
+        let memoUserId = props.notes
+        let myMemoId
 
+        memoUserId.map((myMemo) => {
+            myMemoId = myMemo.uid
+            return myMemoId
+        })
 
+        
+        if(props.userId === myMemoId) {
+            console.log('yes it is your memo')
+            axios.delete(`/memos/${props.datakey}.json`)
+        } else {
+            alert('It is not your memo')
+        }
+
+        // if(props.userId == props.notes.uid) {
+        //     console.log('It is your memo')
+        //     axios.delete(`/memos/${props.datakey}.json`)
+        //             .then(res=> {
+        //                 console.log(res)
+        //         })
+        // } else {
+        //     console.log('sorry it is not your memo!')
+        // }
+                
     }
 
     const memoList = props.notes.map(memo => {
         return(
                 <Grid item xs={6} sm={4} key={memo.id} datakey={memo.dataKey}>
-                    <Card className="memoPaper" 
-                            onMouseOver={() => setHoverMemo(true)} 
-                            onMouseLeave={() => {
-                                setHoverMemo(false)
-                                setClickedReply(!setClickedReply)
-                            }}>
+                    <Card className="memoPaper">
                         <div 
                             className="memo" >
                             <h3>{memo.author}</h3>
                             <p>{memo.message}</p>
-                            { onUserPage ? <DeleteIcon className={classes.icon} onClick={deleteMemo} /> : null }
+                            { !onUserPage ? <DeleteIcon className={classes.icon} onClick={deleteMemo} /> : null }
                             <IconButton aria-label="Add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
