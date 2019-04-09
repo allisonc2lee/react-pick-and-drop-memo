@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { userState, useEffect } from 'react';
 import axios from 'axios'
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
@@ -21,6 +21,8 @@ const styles = theme => ({
 
 const MemoGrid = (props) => {
 
+    const [newMemoList, setNewMemoList] = userState({})
+
     const { classes } = props;    
 
     function deleteMemo(event) {
@@ -39,6 +41,10 @@ const MemoGrid = (props) => {
             axios.delete(`/memos/${props.datakey}.json`)
         }
                 
+    }
+
+    function updateMyMemo() {
+
     }
 
     const memoList = props.notes.map(memo => {

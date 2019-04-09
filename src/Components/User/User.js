@@ -18,8 +18,6 @@ class User extends Component{
     }
 
     componentDidMount() {
-
-
         firebase.auth().onAuthStateChanged(user => {
             let displayName
 
@@ -56,6 +54,10 @@ class User extends Component{
                 memos: arr
             })
         })
+    }
+
+    updateMemosList() {
+        
     }
 
     render() {
