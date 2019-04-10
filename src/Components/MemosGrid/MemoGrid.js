@@ -30,24 +30,24 @@ const MemoGrid = (props) => {
         setNewMemoList(props.memos)
     }, [])
 
-    function deleteMemo(event) {
+    function deleteMemo(index) {
         
-        event.preventDefault()
+        
 
-        let memoUserId = props.notes
+        let memoUser = props.notes
         let myMemoId
 
-        memoUserId.map((myMemo) => {
+        memoUser.map((myMemo) => {
             myMemoId = myMemo.uid
             return myMemoId
         })
         
         if(props.userId === myMemoId) {
             axios.delete(`/memos/${props.datakey}.json`)
-                .then(res => {
-                    
-                })
         }
+
+        memoUser.splice(0, 1);
+        console.log(memoUser)
     }
 
 
