@@ -7,25 +7,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-    root: {
-      color: theme.palette.text.primary,
-    },
-    icon: {
-      margin: theme.spacing.unit,
-      fontSize: 32,
-      cursor: 'pointer'
-    },
-  });
-
-const MemoGrid = (props) => {
-
-    const { classes } = props;    
-
-    const memoList = props.notes.map(memo => {
-        return(
-                <Grid item xs={6} sm={4} key={memo.id} datakey={memo.datakey}>
-                    <Card className="memoPaper">
+const FavMemo = props => {
+    return(
+                <Grid item xs={6} sm={4} >
+                <p>Fav:</p>
+                    {/* <Card className="memoPaper">
                         <div 
                             className="memo" >
                             <h3>{memo.author}</h3>
@@ -35,21 +21,9 @@ const MemoGrid = (props) => {
                                 <FavoriteIcon />
                             </IconButton>
                         </div>
-                    </Card>
+                    </Card> */}
                 </Grid>
-        )
-    })
-
-    return(
-        <>      
-            { memoList }
-        </>
     )
 }
 
-MemoGrid.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(MemoGrid)
-
+export default FavMemo

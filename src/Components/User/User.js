@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 
 import app from '../../base'
 import MemoGrid from '../MemosGrid/MemoGrid'
+import FavMemo from '../FavoutieMemos/FavouriteMemo'
 import UserProfile from '../UserProfile/UserProfile'
 
 class User extends Component{
@@ -18,7 +19,8 @@ class User extends Component{
             userId: null,
             userName: "",
             userIcon: null,
-            updated: false
+            updated: false,
+            favourtied: false
         }
         this.deleteMemo = this.deleteMemo.bind(this); 
     }
@@ -63,40 +65,24 @@ class User extends Component{
         })
     }
 
-    deleteMemo(key, index) {
+    deleteMemo(key) {
        // https://programmingwithmosh.com/javascript/axios-in-react-bring-your-data-to-the-front/
-        let updatedMemos = {...this.state.memos}
-        let memosItem = Object.keys(updatedMemos).map((Arr, index) => {
-            let memoItem = [...Array( updatedMemos[Arr] )] 
-        })
-
         axios.delete(`/memos/${key}.json`)
             .then(res => {
                 console.log(res)
                 this.setState({ updated: true })
                 if(this.state.updated) {
-                    console.log(index)
                     this.loadUserMemo()
                 }
             })
+    }
 
-        
-        
-        
-        // let memoUser = props.notes
-        // let myMemoId
+    addToFavourite(key) {
+        let updatedMemos = {...this.state.memos}
+        this.setState({ favourtied: true })
+        if(this.state.favourtied) {
 
-        // memoUser.map((myMemo) => {
-        //     myMemoId = myMemo.uid
-        //     return myMemoId
-        // })
-        
-        // if(props.userId === myMemoId) {
-        //     axios.delete(`/memos/${props.datakey}.json`)
-        // }
-
-        // memoUser.splice(0, 1);
-        // console.log(memoUser)
+        }
     }
 
 
@@ -136,6 +122,7 @@ class User extends Component{
                                     onUserPage={ true }
                                     memos={userArr}
                                     deleteMemo={(e) => this.deleteMemo(key)}
+                                    addToFavourite={(e) => this.addToFavourite(key)}
                                     />
                     }
                 })
@@ -150,6 +137,7 @@ class User extends Component{
                     <Grid container item xs={12} spacing={24}>
                         { userData }
                     </Grid>
+                    <FavMemo />
                 </Grid>
             </>
         )
