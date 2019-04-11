@@ -17,7 +17,8 @@ class User extends Component{
             didAuth: false,
             userId: null,
             userName: "",
-            userIcon: null
+            userIcon: null,
+            updated: false
         }
         this.deleteMemo = this.deleteMemo.bind(this); 
     }
@@ -32,6 +33,7 @@ class User extends Component{
                 } else {
                     displayName = user.displayName
                 }
+
 
                 this.setState({
                     didAuth: true,
@@ -61,15 +63,26 @@ class User extends Component{
         })
     }
 
-    deleteMemo(index) {
-       // this.loadUserMemo() 
+    deleteMemo(key, index) {
+       // https://programmingwithmosh.com/javascript/axios-in-react-bring-your-data-to-the-front/
         let updatedMemos = {...this.state.memos}
-        console.log(updatedMemos)
-
-        Object.keys(updatedMemos).map((memo) => {
-            console.log(memo)
+        let memosItem = Object.keys(updatedMemos).map((Arr, index) => {
+            let memoItem = [...Array( updatedMemos[Arr] )] 
         })
 
+        axios.delete(`/memos/${key}.json`)
+            .then(res => {
+                console.log(res)
+                this.setState({ updated: true })
+                if(this.state.updated) {
+                    console.log(index)
+                    this.loadUserMemo()
+                }
+            })
+
+        
+        
+        
         // let memoUser = props.notes
         // let myMemoId
 
@@ -122,7 +135,7 @@ class User extends Component{
                                     userId={this.state.userId}
                                     onUserPage={ true }
                                     memos={userArr}
-                                    deleteMemo={this.deleteMemo}
+                                    deleteMemo={(e) => this.deleteMemo(key)}
                                     />
                     }
                 })

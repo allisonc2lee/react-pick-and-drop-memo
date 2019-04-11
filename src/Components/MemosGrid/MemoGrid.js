@@ -30,25 +30,25 @@ const MemoGrid = (props) => {
         setNewMemoList(props.memos)
     }, [])
 
-    function deleteMemo(index) {
+    // function deleteMemo(index) {
         
         
 
-        let memoUser = props.notes
-        let myMemoId
+    //     let memoUser = props.notes
+    //     let myMemoId
 
-        memoUser.map((myMemo) => {
-            myMemoId = myMemo.uid
-            return myMemoId
-        })
+    //     memoUser.map((myMemo) => {
+    //         myMemoId = myMemo.uid
+    //         return myMemoId
+    //     })
         
-        if(props.userId === myMemoId) {
-            axios.delete(`/memos/${props.datakey}.json`)
-        }
+    //     if(props.userId === myMemoId) {
+    //         axios.delete(`/memos/${props.datakey}.json`)
+    //     }
 
-        memoUser.splice(0, 1);
-        console.log(memoUser)
-    }
+    //     memoUser.splice(0, 1);
+    //     console.log(memoUser)
+    // }
 
 
     const memoList = props.notes.map(memo => {
