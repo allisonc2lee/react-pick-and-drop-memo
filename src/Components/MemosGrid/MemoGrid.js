@@ -59,7 +59,7 @@ const MemoGrid = (props) => {
                             className="memo" >
                             <h3>{memo.author}</h3>
                             <p>{memo.message}</p>
-                            { props.onUserPage ? <DeleteIcon className={classes.icon} onClick={deleteMemo} /> : null }
+                            { props.onUserPage ? <DeleteIcon className={classes.icon} onClick={props.deleteMemo} /> : null }
                             <IconButton aria-label="Add to favorites">
                                 <FavoriteIcon />
                             </IconButton>

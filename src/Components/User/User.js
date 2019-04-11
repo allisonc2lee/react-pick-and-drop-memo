@@ -9,12 +9,17 @@ import MemoGrid from '../MemosGrid/MemoGrid'
 import UserProfile from '../UserProfile/UserProfile'
 
 class User extends Component{
-    state = {
-        memos: {},
-        didAuth: false,
-        userId: null,
-        userName: "",
-        userIcon: null
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            memos: {},
+            didAuth: false,
+            userId: null,
+            userName: "",
+            userIcon: null
+        }
+        this.deleteMemo = this.deleteMemo.bind(this); 
     }
 
     componentDidMount() {
@@ -56,9 +61,31 @@ class User extends Component{
         })
     }
 
-    updateMemosList() {
+    deleteMemo(index) {
+       // this.loadUserMemo() 
+        let updatedMemos = {...this.state.memos}
+        console.log(updatedMemos)
+
+        Object.keys(updatedMemos).map((memo) => {
+            console.log(memo)
+        })
+
+        // let memoUser = props.notes
+        // let myMemoId
+
+        // memoUser.map((myMemo) => {
+        //     myMemoId = myMemo.uid
+        //     return myMemoId
+        // })
         
+        // if(props.userId === myMemoId) {
+        //     axios.delete(`/memos/${props.datakey}.json`)
+        // }
+
+        // memoUser.splice(0, 1);
+        // console.log(memoUser)
     }
+
 
     render() {
 
@@ -95,6 +122,7 @@ class User extends Component{
                                     userId={this.state.userId}
                                     onUserPage={ true }
                                     memos={userArr}
+                                    deleteMemo={this.deleteMemo}
                                     />
                     }
                 })
