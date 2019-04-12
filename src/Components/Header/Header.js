@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import firebase from 'firebase'
+import PropTypes from 'prop-types';
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { withStyles } from '@material-ui/core/styles';
+
 
 const Header = props => {
 

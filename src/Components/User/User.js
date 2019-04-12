@@ -122,7 +122,6 @@ class User extends Component{
                                     onUserPage={ true }
                                     memos={userArr}
                                     deleteMemo={(e) => this.deleteMemo(key)}
-                                    addToFavourite={(e) => this.addToFavourite(key)}
                                     />
                     }
                 })
@@ -137,7 +136,6 @@ class User extends Component{
                     <Grid container item xs={12} spacing={24}>
                         { userData }
                     </Grid>
-                    <FavMemo />
                 </Grid>
             </>
         )
