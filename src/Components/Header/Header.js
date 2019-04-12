@@ -1,16 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import firebase from 'firebase'
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import Toolbar from '@material-ui/core/Toolbar';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
+import Typography from "@material-ui/core/Typography";
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import { withStyles } from '@material-ui/core/styles'
 
+
+const styles = theme => ({
+    root: {
+        width: "100%"
+    },
+    grow: {
+        flexGrow: 1
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20
+    },
+    title: {
+        display: "none",
+        [theme.breakpoints.up("sm")]: {
+        display: "block"
+        }
+    },
+    sectionDesktop: {
+        display: "none",
+        [theme.breakpoints.up("md")]: {
+        display: "flex"
+        }
+    }
+});
 
 const Header = props => {
 
     const [auth, setAuth] = useState(false)
+    const [achorEl, setAchorEl] = useState(null)
 
     const [authNav, setAuthNav] = useState([
         {name: 'submit-page',link: "/addNewMemo", content: 'Add New'},
@@ -23,32 +53,73 @@ const Header = props => {
         })
     })
 
-    const afterLogin = authNav.map(auth => <li key={auth.name}><Link to={auth.link}>{auth.content}</Link></li>)
+    function profileOpenHandler(event) {
+        setAchorEl(event.currentTarget)
+    }
+
+    function profileCloseHandler(event) {
+        setAchorEl(null)
+    }
+
+    const isMenuOpen = Boolean(achorEl);
+
+    // const afterLogin = authNav.map(auth => )
 
     let logOut = props.login
+
     let showLogOutButton
 
     if(!logOut) {
-        showLogOutButton = <li><Link to="/user">Login</Link></li>
+        showLogOutButton = <li className="link__item"><Link to="/user"></Link></li>
     } else {
         showLogOutButton = <>
-            {afterLogin}
-            <li><a href="#" onClick={props.SignOutUser}>Log Out</a></li>
+            <IconButton
+                aria-owns={isMenuOpen ? "material-appbar" : undefined} 
+                aria-haspopup="true" 
+                onClick={profileOpenHandler}>
+                <AccountCircle />
+            </IconButton>
+            <Menu
+                anchorEl={achorEl}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
+                open={isMenuOpen}
+                onClose={profileCloseHandler}
+            >
+                <MenuItem onClick={profileCloseHandler}>
+                    <li className="link_item"><Link to='/user'>Profile</Link></li>
+                </MenuItem>
+                <MenuItem onClick={profileCloseHandler}>
+                     <li className="link_item"><a href="#" onClick={props.SignOutUser}>Log Out</a></li>
+                </MenuItem>
+            </Menu>
+
+            {/* <li><a href="#" onClick={props.SignOutUser}>Log Out</a></li> */}
         </>
     }
-
     return(
-        <>
-            <nav>
-                <ul>
-                    <Link to="/">
-                        <h1>Pick and Drop</h1>
-                    </Link>
-                    { showLogOutButton }                
-                </ul>
-            </nav>
-        </>
+            <div className="header">
+                <AppBar className="header-container">
+                    <Toolbar className="header-container_list">
+                            <Typography className="list--link">
+                                <Link to="/">
+                                    Pick and Drop
+                                </Link>
+                            </Typography>
+                            <Typography className="list--link">
+                                <Link to="/addNewMemo">
+                                    Add New
+                                </Link>
+                            </Typography>
+                            { showLogOutButton }        
+                    </Toolbar>
+                </AppBar>
+            </div>
     )
 }
 
-export default Header
+Header.propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+
+export default withStyles(styles)(Header)

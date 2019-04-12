@@ -1,5 +1,9 @@
 {
-    "extends": "react-app",
+    "extends": [
+        "react-app",
+        "prettier",
+        "prettier/react"
+    ],
     "plugins": ["prettier"],
     "rules": {
         "react/jsx-filename-extension": [
@@ -11,6 +15,14 @@
         "react/prop-types": 0,
         "no-underscore-dangle": 0
     },
+    "quotes": [
+        2,
+        "signle",
+        {
+            "avoidEscape": true,
+            "allowTemplateLiterals": true
+        }
+    ],
     "globals": {
         "window": true,
         "document": true,

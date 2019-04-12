@@ -1,3 +1,6 @@
+// Tools & variable library 
+@import 'tools/_variables';
+
 // Reuseable Components
 @import 'components/_header';
 @import 'components/_memo';
@@ -8,9 +11,6 @@
 @import 'layouts/_form';
 @import 'layouts/_page';
 @import 'layouts/_user';
-
-// Tools & variable library 
-@import 'tools/_variables';
 
 // Vendor
 @import 'vendor/_zoom';

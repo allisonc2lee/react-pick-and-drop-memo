@@ -1,0 +1,18 @@
+.header {
+
+    header {
+        width: 100%;
+        background: $mid_blue;
+    }
+
+
+
+    &-container {
+
+        &_list {
+            max-width: 850px;
+            width: 100%;
+            margin: auto;
+        }
+    }
+}
