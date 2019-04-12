@@ -1,23 +1,27 @@
-// Tools & variable library 
+// variable, mixins, functions
+@import 'tools/_responsive';
+@import 'tools/_mixin';
 @import 'tools/_variables';
 
-// Reuseable Components
-@import 'components/_header';
-@import 'components/_memo';
-@import 'components/_memoGrid';
-@import 'components/_profile';
-
-// Page Layouts
-@import 'layouts/_form';
+// standard styles and rules
 @import 'layouts/_page';
 @import 'layouts/_user';
 
-// Vendor
-@import 'vendor/_zoom';
+// Reusable modules
+@import 'components/_button';
+@import 'components/_form';
+@import 'components/_header';
+@import 'components/_memo';
+@import 'components/_profile';
 
-// Global style and elements 
-@import 'base/_custom';
-@import 'base/_buttons';
-@import 'base/_forms';
-@import 'base/_responsive';
+// Custom unit
+@import 'base/_reset';
 @import 'base/_typography';
+
+// Page
+@import 'page/_home';
+@import 'page/_submit';
+@import 'page/_user';
+
+// third party 
+@import 'vendor/_zoom';
