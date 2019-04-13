@@ -18,13 +18,9 @@ const styles = theme => ({
 
 const MemoGrid = (props) => {
 
-    const { classes } = props;  
+    const { classes, notes, onUserPage } = props;  
 
-    function handleProfileMenuOpen (event) {
-        this.setState({ anchorEl: event.currentTarget });
-    }
-
-    const memoList = props.notes.map(memo => {
+    const memoList = notes.map(memo => {
         return(
                 <Grid item xs={6} sm={4} key={memo.id} datakey={memo.datakey}>
                     <Card className="memoPaper">
@@ -32,7 +28,7 @@ const MemoGrid = (props) => {
                             className="memo" >
                             <h3>{memo.author}</h3>
                             <p>{memo.message}</p>
-                            { props.onUserPage ? <DeleteIcon className={classes.icon} onClick={props.deleteMemo} /> : null }
+                            { onUserPage ? <DeleteIcon className={classes.icon} onClick={props.deleteMemo} /> : null }
                         </div>
                     </Card>
                 </Grid>

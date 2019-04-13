@@ -39,13 +39,16 @@ class SubmitMemo extends Component {
     }
 
     memoDataHandler = (event) => {
+        const { uid, title, message, author } = this.state
+
         event.preventDefault()
+
         const memo = {
             id: new Date().valueOf(),
-            uid: this.state.uid,
-            title: this.state.title,
-            message: this.state.message,
-            author: this.state.author
+            uid: uid,
+            title: title,
+            message: message,
+            author: author
         }
         
         axios.post('/memos.json', memo) 
@@ -60,6 +63,7 @@ class SubmitMemo extends Component {
             submitted: true
         })
 
+
     }
         render() {
 
@@ -73,9 +77,10 @@ class SubmitMemo extends Component {
                                 onChange={(event) => this.setState({message: event.target.value})}
                                 cols="30" 
                                 rows="10"></textarea>
-                            <button onClick={this.memoDataHandler}>Add</button>
+                            <button onClick={this.memoDataHandler} type="submit">Add</button>
                         </form>
                     </div> 
+                    { this.state.submitted ? <Redirect to="/" /> : null }
                 </>
             )
         }

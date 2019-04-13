@@ -42,11 +42,6 @@ const Header = props => {
     const [auth, setAuth] = useState(false)
     const [achorEl, setAchorEl] = useState(null)
 
-    const [authNav, setAuthNav] = useState([
-        {name: 'submit-page',link: "/addNewMemo", content: 'Add New'},
-        {name: 'user-page',link: "/user", content: 'Profile'}
-    ])
-
     useState(() => {
         firebase.auth().onAuthStateChanged(() => {
             setAuth(true)
@@ -63,7 +58,6 @@ const Header = props => {
 
     const isMenuOpen = Boolean(achorEl);
 
-    // const afterLogin = authNav.map(auth => )
 
     let logOut = props.login
 
@@ -93,8 +87,6 @@ const Header = props => {
                      <li className="link_item"><a href="#" onClick={props.SignOutUser}>Log Out</a></li>
                 </MenuItem>
             </Menu>
-
-            {/* <li><a href="#" onClick={props.SignOutUser}>Log Out</a></li> */}
         </>
     }
     return(

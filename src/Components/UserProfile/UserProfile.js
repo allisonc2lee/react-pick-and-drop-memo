@@ -13,14 +13,14 @@ const styles = {
 };
 
 const ProfileIcon = props => {
-    const { classes } = props;
+    const { classes, name, userIcon } = props;
     return(
         <Grid container justify="center" alignItems="center" className="userprofile" direction="column">         
             {props.userData ? 
-                <Avatar  className={classes.bigAvatar} src={props.userIcon} alt={props.name} /> 
+                <Avatar  className={classes.bigAvatar} src={userIcon} alt={name} /> 
                 : <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdvxYkwraOEJ_Rm2XUk_h-uwM91uFfTIkd8ky55rwgVtHWKl_Tg" alt="Drop and Pick" />
             }
-            <p className="userprofile--container_name">{ props.name }</p>
+            <p className="userprofile--container_name">{ name }</p>
         </Grid>
     )
 }

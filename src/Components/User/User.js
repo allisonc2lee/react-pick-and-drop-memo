@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 
 import app from '../../base'
 import MemoGrid from '../MemosGrid/MemoGrid'
-import FavMemo from '../FavoutieMemos/FavouriteMemo'
 import UserProfile from '../UserProfile/UserProfile'
 
 class User extends Component{
@@ -66,7 +65,6 @@ class User extends Component{
     }
 
     deleteMemo(key) {
-       // https://programmingwithmosh.com/javascript/axios-in-react-bring-your-data-to-the-front/
         axios.delete(`/memos/${key}.json`)
             .then(res => {
                 console.log(res)
@@ -77,26 +75,19 @@ class User extends Component{
             })
     }
 
-    addToFavourite(key) {
-        let updatedMemos = {...this.state.memos}
-        this.setState({ favourtied: true })
-        if(this.state.favourtied) {
-
-        }
-    }
-
-
     render() {
 
         const isLoggedIn = this.state.didAuth
         let logined
 
         if(isLoggedIn) {
+
+            const { didAuth, userName, userIcon } = this.state
             logined = 
                         <UserProfile 
-                            userData={this.state.didAuth}
-                            name={this.state.userName} 
-                            userIcon={this.state.userIcon}  
+                            userData={didAuth}
+                            name={userName} 
+                            userIcon={userIcon}  
                         />
         } else {
             logined = null
